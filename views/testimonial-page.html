@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonial</title>
+    <link rel="stylesheet" href="/public/style/navbar.css" />
+    <link rel="stylesheet" href="/public/style/testimonial-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- navbar section -->
+    <nav
+      id="navigation"
+      class="navbar bg-color sticky-top navbar-inverse navbar-expand-lg shadow"
+    >
+      <div class="container">
+        <a href="/" class="me-4">
+          <img src="/public/image/logo-personal.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggle"
+          aria-control="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-light" aria-current="page" href="/"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link fs-5 text-light active"
+                aria-current="page"
+                href="testimonial-page"
+                >Testimonial</a
+              >
+            </li>
+          </ul>
+          <a class="btn fs-5 fw-medium text-dark" href="form-contact"
+            >Contact Me</a
+          >
+        </div>
+      </div>
+    </nav>
+    <!-- content testimonial section -->
+
+    <div
+      class="container-fluid d-flex flex-column align-items-center justify-content-center pt-4"
+    >
+      <h2 class="text-dark fs-1 fw-bold">testimonial-page</h2>
+      <div class="text-dark fs-3 fw-medium mt-4">
+        <h4>Rating By Testimonial</h4>
+      </div>
+      <div class="pt-2 d-flex align-items-center justify-content-center">
+        <ul
+          class="d-flex flex-row gap-3 me-4 justify-content-center align-items-center"
+        >
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="0"
+              onclick="getAllTestimonials()"
+            >
+              All <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="1"
+              onclick="getFilteredTestimonials(1)"
+            >
+              1 <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="2"
+              onclick="getFilteredTestimonials(2)"
+            >
+              2 <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="3"
+              onclick="getFilteredTestimonials(3)"
+            >
+              3 <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="4"
+              onclick="getFilteredTestimonials(4)"
+            >
+              4 <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button
+              class="btn btn-dark"
+              value="5"
+              onclick="getFilteredTestimonials(5)"
+            >
+              5 <i class="fa-solid fa-star"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- testimonial content -->
+
+      <div
+        class="testimonials row d-flex justify-content-center align-items-center pe-5 ps-5"
+        id="testimonials"
+      >
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card m-4 pe-2 pt-2 ps-2 col-xs-2 col-sm-6 col-md-3 col-lg-2"
+        >
+          <img
+            src="assets/image/monyet-selfi.jpg"
+            alt="irsyad-photo"
+            class="card-img-top p-1"
+            style="width: 100%; height: 200px; object-fit: cover"
+          />
+          <div class="card-body">
+            <div class="card-text">
+              <p class="qoute fw-bolder">ini sudah bagus</p>
+              <p class="author text-end fst-italic">- Muhammad Irsyad Marwan</p>
+              <p class="text-end">5 <i class="fa-solid fa-star"></i></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/public/js/ajax.js"></script>
+  </body>
+</html>

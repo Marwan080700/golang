@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="/public/style/navbar.css" />
+    <link rel="stylesheet" href="/public/style/landing-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- navbar section -->
+
+    <nav
+      id="navigation"
+      class="navbar bg-color sticky-top navbar-inverse navbar-expand-lg shadow"
+    >
+      <div class="container">
+        <a href="/" class="me-4">
+          <img src="/public/image/logo-personal.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggle"
+          aria-control="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link fs-5 text-light active"
+                aria-current="page"
+                href="/"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link fs-5 text-light"
+                aria-current="page"
+                href="testimonial-page"
+                >Testimonial</a
+              >
+            </li>
+          </ul>
+          <a class="btn fs-5 fw-medium text-dark" href="/form-contact"
+            >Contact Me</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- content section -->
+    <div class="container-card d-flex">
+      <div
+        class="card container-card-content d-flex align-items-center justify-content-center"
+      >
+        <div class="card-list-content d-flex flex-row p-5">
+          <div class="card-body card-body-text p-0">
+            <h2 class="card-title">Hola!!! Welcome To My Personal Website</h2>
+            <p class="card-text pe-4 mt-4">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perspiciatis labore, alias, iste vitae laboriosam temporibus earum
+              distinctio ex veritatis delectus libero velit inventore esse hic
+              suscipit atque. In sint laborum ad, nesciunt aliquid cumque
+              assumenda delectus, consectetur asperiores molestias molestiae.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
+              officia modi eos a iste atque earum impedit quia incidunt amet.
+            </p>
+
+            <div
+              class="card-content-list d-flex flex-sm-row align-items-center mt-5"
+            >
+              <button class="btn btn-dark rounded-pill ps-4 pe-4 me-4">
+                <a class="text-light fs-6 fw-bolder" href="form-contact">
+                  Contact
+                </a>
+              </button>
+
+              <a
+                class="text-dark fs-6 fw-bolder"
+                href=""
+                download="kuda-selfi.jpg"
+                >Download CV
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 34 32"
+                  stroke-width="1.2"
+                  stroke="currentColor"
+                  width="30px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="social-media mt-5 d-flex gap-4 fs-2">
+              <a
+                href="https://www.linkedin.com/in/muhammad-irsyad-marwan-102b92248/"
+                ><i class="icon-sosmed fa-brands fa-linkedin text-dark"></i
+              ></a>
+              <a href="https://www.instagram.com/irsyad.mrwn/"
+                ><i class="icon-sosmed fa-brands fa-instagram text-dark"></i
+              ></a>
+              <a href="https://www.facebook.com/irsyadmarwan1"
+                ><i class="icon-sosmed fa-brands fa-facebook text-dark"></i
+              ></a>
+              <a href="https://twitter.com/marwan_irsyad"
+                ><i class="icon-sosmed fa-brands fa-twitter text-dark"></i
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="card card-profile d-flex align-items-center justify-content-center rounded-3 shadow"
+          >
+            <img
+              class="card-img-top rounded-top-3"
+              src="/public/image/irsyad.jpg"
+              alt="card-photo"
+            />
+            <div class="card-body rounded-3">
+              <h3 class="card-title fs-5 fw-bolder text-center">
+                Muhammad Irsyad Marwan
+              </h3>
+              <p class="text-card fs-5 text-center">Fullstack</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- my project content -->
+
+    <div class="my-project-container">
+      <h2 class="text-center fw-bold pt-5">My Project</h2>
+      <div class="add-button text-end" style="margin-right: 13.5%">
+        <a
+          class="btn fw-bolder"
+          style="
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: #495551;
+            color: white;
+          "
+          href="/form-add-project"
+          >Add Project</a
+        >
+      </div>
+      <div
+        class="row card-content gap-4 p-5 d-flex align-items-center justify-content-center"
+      >
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/gorila-selfie.jpg"
+                alt="test"
+              />
+              <a href="detail-project-page/1" class="fw-bolder fs-5">Tester1</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/kucing-selfi.jpg"
+                alt="test"
+              />
+              <a href="detail-project-page/2" class="fw-bolder fs-5">Tester2</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-56col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/kuda-selfi.jpg"
+                alt="test"
+              />
+              <a href="detail-project-page/3" class="fw-bolder fs-5">Tester3</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/monyet-selfi.jpg"
+                alt="test"
+              />
+              <a href="detail-project-page/4" class="fw-bolder fs-5">Tester5</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group row gap-3 d-flex justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/anjing-selfie.jpeg"
+                alt="test"
+              />
+              <a href="detail-project-page/5" class="fw-bolder fs-5">Tester5</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group row gap-3 d-flex justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+          <div class="card card-my-project">
+            <div class="card-body rounded-3 shadow">
+              <img
+                class="card-img-top rounded-3"
+                src="/public/image/hehe-selfie.jpg"
+                alt="test"
+              />
+              <a href="detail-project-page/6" class="fw-bolder fs-5">Tester6</a>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Mollitia, omnis!
+              </p>
+              <div class="d-flex gap-3 mb-3">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-php"></i>
+                <i class="fa-brands fa-java"></i>
+              </div>
+
+              <div
+                class="btn-group row gap-3 d-flex justify-content-center p-2"
+              >
+                <button class="col pt-1 pb-1 btn-edit">Edit</button>
+                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      feather.replace();
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

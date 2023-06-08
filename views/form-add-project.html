@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Project</title>
+    <link rel="stylesheet" href="/public/style/navbar.css" />
+    <link rel="stylesheet" href="/public/style/form-add-project.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav
+      id="navigation"
+      class="navbar bg-color sticky-top navbar-inverse navbar-expand-lg shadow"
+    >
+      <div class="container">
+        <a href="/" class="me-4">
+          <img src="/public/image/logo-personal.png" alt="" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarToggle"
+          aria-control="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fs-5 text-light" aria-current="page" href="/"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link fs-5 text-light active"
+                aria-current="page"
+                href="testimonial-page"
+                >Testimonial</a
+              >
+            </li>
+          </ul>
+          <a class="btn fs-5 fw-medium text-dark" href="/form-contact"
+            >Contact Me</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- form content -->
+
+    <div
+      class="container-fluid container-form-add d-flex justify-content-center align-items-center"
+    >
+      <div class="container-form">
+        <form action="/add-project" method="post">
+          <h2 class="text-center mb-5 mt-5 fw-bold">Add My Project</h2>
+
+          <div>
+            <label class="form-label fw-bolder" for="input-title"
+              >Project Name</label
+            >
+            <input
+              class="form-control mb-4 shadow"
+              type="text"
+              id="input-title"
+              name="input-title
+            "
+            />
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="form-label fw-bolder" for="input-start-date"
+                >Start Date</label
+              >
+              <input
+                class="form-control mb-4 shadow"
+                type="date"
+                name="input-start-date"
+                id="input-start-date"
+              />
+            </div>
+            <div class="col">
+              <label class="form-label fw-bolder" for="input-end-date">
+                End Date</label
+              >
+              <input
+                class="form-control mb-4 shadow"
+                type="date"
+                name="input-end-date"
+                id="input-end-date"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label fw-bolder" for="input-desc"
+              >Description</label
+            >
+            <textarea
+              class="form-control mb-4 shadow"
+              name="input-desc"
+              id="input-desc"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="form-label fw-bolder" for="input-check-box"
+              >Technologies</label
+            >
+            <div class="row g-3">
+              <div class="col-xl-6">
+                <input class="shadow" type="checkbox" id="input-check" />
+                <label for="input-check">Javascript</label>
+              </div>
+
+              <div class="col-xl-6">
+                <input class="shadow" type="checkbox" id="input-check" />
+                <label for="input-check">Javascript</label>
+              </div>
+
+              <div class="col-xl-6">
+                <input class="shadow" type="checkbox" id="input-check" />
+                <label for="input-check">Javascript</label>
+              </div>
+
+              <div class="col-xl-6">
+                <input class="shadow" type="checkbox" id="input-check" />
+                <label for="input-check">Javascript</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label mt-4 fw-bolder" for="input-file"
+                >Input File</label
+              >
+              <input class="form-control shadow" type="file" id="input-file" />
+            </div>
+
+            <div class="d-flex justify-content-md-end mb-5">
+              <button
+                type="submit"
+                class="btn btn-dark mt-4 pe-4 ps-4 rounded-pill"
+              >
+                submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

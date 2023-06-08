@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.bg-color {
+  background-color: #495551 !important;
+}
+
+.container a img {
+  width: 50px !important;
+}
+
+.container a img:hover {
+  transform: rotate(360deg) scale(1.2);
+  transition: all 1s ease-in-out;
+}
+
+.container .navbar-collapse {
+  text-align: center;
+}
+
+.container .navbar-toggler {
+  background-color: #c0ea6a;
+}
+
+.container .btn {
+  background-color: #c0ea6a;
+}
+
+.container .btn:hover {
+  background-color: #eff5d2;
+  color: #000000;
+  border: none;
+  transition: all 0.5s ease-in-out;
+}

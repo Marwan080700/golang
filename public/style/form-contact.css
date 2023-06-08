@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  background-color: #eff5d2;
+}
+
+.container-form {
+  width: 550px;
+}
+
+.container-form h2 {
+  text-shadow: 0 5px 10px rgb(117, 117, 117);
+}
+
+.container-form textarea {
+  resize: none;
+}
+
+.container-form .btn:hover {
+  background-color: #c0ea6a;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}

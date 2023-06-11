@@ -158,6 +158,7 @@
 
     <div class="my-project-container">
       <h2 class="text-center fw-bold pt-5">My Project</h2>
+
       <div class="add-button text-end" style="margin-right: 13.5%">
         <a
           class="btn fw-bolder"
@@ -171,9 +172,11 @@
           >Add Project</a
         >
       </div>
+
       <div
         class="row card-content gap-4 p-5 d-flex align-items-center justify-content-center"
       >
+        {{range $index, $data := .Projects}}
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
           <div class="card card-my-project">
             <div class="card-body rounded-3 shadow">
@@ -182,27 +185,57 @@
                 src="/public/image/gorila-selfie.jpg"
                 alt="test"
               />
-              <a href="detail-project-page/1" class="fw-bolder fs-5">Tester1</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
+              <a href="detail-project-page/{{$index}}" class="fw-bolder fs-5"
+                >{{$data.Title}}</a
+              >
+              <p>Duration : {{$data.Duration}}</p>
+              <p>{{$data.Desc}}</p>
               <div class="d-flex gap-3 mb-3">
+                <!-- check js -->
+                {{if $data.CheckJs}}
                 <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
+                {{end}}
+                <!-- check nodejs -->
+                {{if $data.CheckNodejs}}
                 <i class="fa-brands fa-java"></i>
+                {{end}}
+                <!-- check php -->
+                {{if $data.CheckPhp}}
+                <i class="fa-brands fa-php"></i>
+                {{end}}
+                <!-- check py -->
+                {{if $data.CheckPython}}
+                <i class="fa-brands fa-python"></i>
+                {{end}}
               </div>
 
               <div
                 class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
               >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
+                <a
+                  class="col pt-1 pb-1 btn-edit"
+                  style="text-align: center; color: white"
+                  href="/form-project-update/{{$index}}"
+                  type="submit"
+                  >Edit</a
+                >
+                <form action="/project-delete/{{$index}}" method="POST">
+                  <input
+                    class="col pt-1 pb-1 btn-delete"
+                    type="submit"
+                    value="Delete Post"
+                    style="
+                      width: 170px;
+                      padding-left: 10px;
+                      padding-right: 10px;
+                    "
+                  />
+                </form>
               </div>
             </div>
           </div>
         </div>
+        {{end}}
 
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
           <div class="card card-my-project">
@@ -355,10 +388,6 @@
         </div>
       </div>
     </div>
-
-    <script>
-      feather.replace();
-    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

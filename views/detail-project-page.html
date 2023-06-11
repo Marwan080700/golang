@@ -81,7 +81,7 @@
         <h3>duration</h3>
         <div class="detail-calendar d-flex gap-3">
           <i class="fa-solid fa-calendar-days"></i>
-          <p>21 Apr 2023 - 22 Mei 2023</p>
+          <p>{{.Project.StartDate}} - {{.Project.EndDate}}</p>
         </div>
         <div class="detail-clock d-flex gap-3">
           <i class="fa-regular fa-clock"></i>
@@ -115,7 +115,7 @@
       </div>
 
       <div class="detail-text mt-4">
-        <p class="text">{{.Content}}</p>
+        <p class="text">{{.Project.Desc}}</p>
       </div>
     </div>
 

@@ -85,38 +85,48 @@
         </div>
         <div class="detail-clock d-flex gap-3">
           <i class="fa-regular fa-clock"></i>
-          <p>1 Month</p>
+          <p>{{.Project.Duration}}</p>
         </div>
       </div>
 
       <div class="technologies-section">
         <h3>Technologies</h3>
-        <div class="row g-3">
-          <div class="col-xl-6">
-            <i class="fa-brands fa-js"></i>
-            <label for="">Javascript</label>
-          </div>
+        <div class="row d-flex flex-row ">
 
-          <div class="col-xl-6">
-            <i class="fa-brands fa-python"></i>
-            <label for="">Python</label>
+          {{if .Project.CheckJs}}
+          <div class="col-xl-6 p-2">
+          <i class="fa-brands fa-js"></i>
+          <label for="">Javascript</label>
           </div>
-
-          <div class="col-xl-6">
-            <i class="fa-brands fa-php"></i>
-            <label for="">Php</label>
+          {{end}} 
+            
+          {{if .Project.CheckPython}}
+          <div class="col-xl-6 p-2">
+          <i class="fa-brands fa-python"></i>
+          <label for="">Python</label>
           </div>
-
-          <div class="col-xl-6">
-            <i class="fa-brands fa-java"></i>
-            <label for="">Java</label>
+          {{end}} 
+            
+          {{if .Project.CheckPhp}}
+          <div class="col-xl-6 p-2">
+          <i class="fa-brands fa-php"></i>
+          <label for="">Php</label>
           </div>
+          {{end}} 
+            
+          {{if .Project.CheckNodejs}}
+          <div class="col-xl-6 p-2">
+          <i class="fa-brands fa-java"></i>
+          <label for="">Java</label>
+          </div>
+          {{end}}
+          </div>
+        </div>
+        <div class="detail-text mt-4 mb-5">
+          <p class="text">{{.Project.Desc}}</p>
         </div>
       </div>
 
-      <div class="detail-text mt-4">
-        <p class="text">{{.Project.Desc}}</p>
-      </div>
     </div>
 
     <script

@@ -1,11 +1,13 @@
 package main
 
 import (
+	"b47-s1/connection"
 	"net/http"
 	"strconv"
 	"text/template"
 	"fmt"
 	"time"
+	"context"
 	
 	"github.com/labstack/echo/v4"
 )
@@ -15,13 +17,15 @@ type Project struct{
 	Title string
 	StartDate string
 	EndDate string
+	StartTime time.Time
+	EndTime time.Time
 	Desc string
 	Duration string
 	CheckJs bool
 	CheckNodejs bool
 	CheckPhp bool
 	CheckPython bool
-	// File string
+	File string
 }
 
 var dataProject = []Project{
@@ -35,7 +39,7 @@ var dataProject = []Project{
 		CheckNodejs: true,
 		CheckPhp: true,
 		CheckPython: true,
-		// File: "hih",
+		File: "hih",
 	},
 	{
 		Title: "beda nih 2",
@@ -47,14 +51,15 @@ var dataProject = []Project{
 		CheckNodejs: true,
 		CheckPhp: true,
 		CheckPython: true,
-		// CheckBox: "java",
-		// File: "hih",
+		File: "hih",
 	},
 }
 
 
 
 func main() {
+	connection.DataBaseConnect()
+
 	e := echo.New()
 	e.Static("/public", "public")
 
@@ -79,6 +84,34 @@ func main() {
 
   
 func home(c echo.Context) error {
+	data, _ := connection.Conn.Query(context.Background(), "SELECT id, title, start_date, end_date, duration, content, js, java, php, python, image FROM tb_project")
+
+	var result []Project
+	for data.Next(){
+		var each = Project{}
+
+		err := data.Scan(&each.Id, 
+						&each.Title, 
+						&each.StartDate, 
+						&each.EndDate,
+						&each.Duration, 
+						&each.Desc, 
+						&each.CheckJs, 
+						&each.CheckNodejs, 
+						&each.CheckPhp, 
+						&each.CheckPython,
+						&each.File,
+		)
+		
+		if err != nil {
+			fmt.Println(err.Error())
+			return c.JSON(http.StatusInternalServerError, map[string]string{"massage": err.Error()})
+		}
+
+		result = append(result, each)
+	}
+
+
 	var tmpl, err = template.ParseFiles("views/index.html")
 
 	if err != nil{
@@ -86,8 +119,9 @@ func home(c echo.Context) error {
 	}
 
 	projects := map[string]interface{}{
-		"Projects": dataProject,
+		"Projects": result,
 	}
+
 
 	return tmpl.Execute(c.Response(), projects)
 }
@@ -130,31 +164,26 @@ func detailPage(c echo.Context)error{
 
 	var ProjectDetail = Project{}
 
-	for i, data := range dataProject{
-		if id == i{
-			ProjectDetail = Project{
-				Title: data.Title,
-				StartDate: data.StartDate,
-				EndDate: data.EndDate,
-				Desc: data.Desc,
-				CheckJs: data.CheckJs,
-				CheckNodejs: data.CheckNodejs,
-				CheckPhp: data.CheckPhp,
-				CheckPython: data.CheckPython,
-				// CheckBox: checkBox,
-				// File: data.file,
-			}
-		}
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, title, start_date, end_date, duration, content, js, java, php, python, image FROM tb_project WHERE id=$1",id).Scan(&ProjectDetail.Id, &ProjectDetail.Title, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Duration, &ProjectDetail.Desc, &ProjectDetail.CheckJs, &ProjectDetail.CheckNodejs, &ProjectDetail.CheckPhp, &ProjectDetail.CheckPython, &ProjectDetail.File)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 	}
+
+	StartTime, _ := time.Parse("2006-01-02", ProjectDetail.StartDate)
+	EndTime, _ := time.Parse("2006-01-02", ProjectDetail.EndDate)
+	ProjectDetail.StartDate = StartTime.Format("2 January 2006")
+	ProjectDetail.EndDate = EndTime.Format("2 January 2006")
+	fmt.Println(ProjectDetail.StartDate, ProjectDetail.EndDate)
 
 	data := map[string]interface{}{
 		"Project": ProjectDetail,
 	}
 
-	var tmpl, err = template.ParseFiles("views/detail-project-page.html")
+	var tmpl, errOut = template.ParseFiles("views/detail-project-page.html")
 
-	if err != nil{
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	if errOut != nil{
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": errOut.Error()})
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -164,41 +193,37 @@ func detailPage(c echo.Context)error{
 
 // function date
 
-func diffDate(startDate, endDate string)string{
-	startTime, _ := time.Parse("2005-02-02", startDate)
-	endTime, _ := time.Parse("2005-02-02", endDate)
-
-
-	duraTime := int(endTime.Sub(startTime).Hours())
-	duraDays := duraTime / 24
-	duraWeeks := duraDays / 7
-	duraMonths := duraWeeks / 4
-	duraYears := duraMonths / 12
-
+func diffDate(startDate string, endDate string)string{
 	var duration string
 
-	if duraYears > 1 {
-		duration = strconv.Itoa(duraYears) + " years"
-	} else if duraYears > 0 {
-		duration = strconv.Itoa(duraYears) + " year"
-	} else {
-		if duraMonths > 1 {
-			duration = strconv.Itoa(duraMonths) + " months"
-		} else if duraMonths > 0 {
-			duration = strconv.Itoa(duraMonths) + " month"
-		} else {
-			if duraWeeks > 1 {
-				duration = strconv.Itoa(duraWeeks) + " weeks"
-			} else if duraWeeks > 0 {
-				duration = strconv.Itoa(duraWeeks) + " week"
-			} else {
-				if duraDays > 1 {
-					duration = strconv.Itoa(duraDays) + " days"
-				} else {
-					duration = strconv.Itoa(duraDays) + " day"
-				}
-			}
-		}
+	dateLayout := "2006-01-02"
+	startDateParse, err := time.Parse(dateLayout, startDate )
+	if err != nil {
+		fmt.Println("Parsing Date Error", err)
+	}
+	endDateParse, err := time.Parse(dateLayout, endDate)
+	if err != nil {
+		fmt.Println("Parsing Date Error", err)
+	}
+
+	difference := endDateParse.Sub(startDateParse).Hours()
+
+	day := int(difference / 24)
+	week := day / 7
+	month := week / 4
+	year := month / 12
+
+	if day >= 0 {
+		duration = strconv.Itoa(day) + " days"
+	}
+	if week > 0 {
+		duration = strconv.Itoa(week) + " weeks"
+	}
+	if month > 0 {
+		duration = strconv.Itoa(month) + " Months"
+	}
+	if year > 0 {
+		duration = strconv.Itoa(year) + " years"
 	}
 
 	return duration
@@ -218,26 +243,14 @@ func addProject(c echo.Context)error{
 	nodeJs := checkNodejs !=""
 	php := checkPhp !=""
 	python := checkPython !=""
-	// file := c.FormValue("input-file") 
+	file := c.FormValue("input-file") 
 
+	_, err:= connection.Conn.Exec(context.Background(), "INSERT INTO tb_project (title, start_date, end_date, duration, content, js, java, php, python, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", title, startDate, endDate, duration, desc , js, nodeJs, php, python, file)
 
-
-	var newProject = Project{
-		Title: title,
-		Desc: desc,
-		StartDate: startDate,
-		EndDate: endDate,
-		Duration: duration,
-		CheckJs: js,
-		CheckNodejs: nodeJs,
-		CheckPhp: php,
-		CheckPython: python,
-		// File: file,
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error add project": err.Error()})
 	}
 
-	dataProject = append(dataProject, newProject)
-
-	fmt.Println(dataProject)
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
@@ -247,31 +260,16 @@ func updateProject(c echo.Context)error{
 
 	var ProjectDetail = Project{}
 
-	for i, data := range dataProject {
-		if id == i {
-			ProjectDetail = Project{
-				Id:          id,
-				Title: data.Title,
-				StartDate:   data.StartDate,
-				EndDate:     data.EndDate,
-				Duration:    data.Duration,
-				Desc: data.Desc,
-				CheckJs: data.CheckJs,
-				CheckNodejs: data.CheckNodejs,
-				CheckPhp: data.CheckPhp,
-				CheckPython: data.CheckPython,
-			}
-		}
-	}
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, title, start_date, end_date, duration, content, js, java, php, python, image FROM tb_project WHERE id=$1",id).Scan(&ProjectDetail.Id, &ProjectDetail.Title, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Duration, &ProjectDetail.Desc, &ProjectDetail.CheckJs, &ProjectDetail.CheckNodejs, &ProjectDetail.CheckPhp, &ProjectDetail.CheckPython, &ProjectDetail.File)
 
 	data := map[string]interface{}{
 		"Project": ProjectDetail,
 	}
 
-	var tmpl, err = template.ParseFiles("views/form-edit-project.html")
+	var tmpl, errOut = template.ParseFiles("views/form-edit-project.html")
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": errOut.Error()})
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -285,11 +283,13 @@ func resUpdate(c echo.Context)error{
 	title := c.FormValue("input-title")
 	startDate := c.FormValue("input-start-date")
 	endDate := c.FormValue("input-end-date")
+	duration := diffDate(startDate, endDate)
 	desc := c.FormValue("input-desc")
 	checkJs := c.FormValue("checkJs")
 	checkNodejs := c.FormValue("checkNodejs")
 	checkPhp := c.FormValue("checkPhp")
 	checkPython := c.FormValue("checkPython")
+	file := c.FormValue("input-file") 
 
 	// konversi cekbox string to boolean
 	js := checkJs !=""
@@ -297,19 +297,11 @@ func resUpdate(c echo.Context)error{
 	php := checkPhp !=""
 	python := checkPython !=""
 
-	var resUpdate = Project{
-		Title: title,
-		Desc: desc,
-		StartDate: startDate,
-		EndDate: endDate,
-		Duration: diffDate(startDate,endDate),
-		CheckJs: js,
-		CheckNodejs: nodeJs,
-		CheckPhp: php,
-		CheckPython: python,
-	}
+	_,err := connection.Conn.Exec(context.Background(), "UPDATE tb_project SET title=$1, start_date=$2, end_date=$3, duration=$4, content=$5, js=$6, java=$7, php=$8, python=$9, image=$10", title, startDate, endDate, duration, desc, js, nodeJs, php, python, file)
 
-	dataProject[id] = resUpdate
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
@@ -317,9 +309,13 @@ func resUpdate(c echo.Context)error{
 func deleteProject(c echo.Context)error{
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	fmt.Println("Index :", id)
+	fmt.Println("Id :", id)
 
-	dataProject = append(dataProject[:id], dataProject[id+1:]...)
+	_, err := connection.Conn.Exec(context.Background(), "DELETE FROM tb_project WHERE id=$1", id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
 
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }

@@ -182,10 +182,10 @@
             <div class="card-body rounded-3 shadow">
               <img
                 class="card-img-top rounded-3"
-                src="/public/image/gorila-selfie.jpg"
+                src="/public/image/kucing-selfi.jpg"
                 alt="test"
               />
-              <a href="detail-project-page/{{$index}}" class="fw-bolder fs-5"
+              <a href="/detail-project-page/{{$data.Id}}" class="fw-bolder fs-5"
                 >{{$data.Title}}</a
               >
               <p>Duration : {{$data.Duration}}</p>
@@ -212,16 +212,21 @@
               <div
                 class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
               >
-                <a
-                  class="col pt-1 pb-1 btn-edit"
-                  style="text-align: center; color: white"
-                  href="/form-project-update/{{$index}}"
-                  type="submit"
-                  >Edit</a
-                >
-                <form action="/project-delete/{{$index}}" method="POST">
+                <form action="/form-project-update/{{$data.Id}}" method="get">
                   <input
-                    class="col pt-1 pb-1 btn-delete"
+                    class="col-sm-12 pt-1 pb-1 btn-update"
+                    type="submit"
+                    value="Edit Post"
+                    style="
+                      width: 170px;
+                      padding-left: 10px;
+                      padding-right: 10px;
+                    "
+                  />
+                </form>
+                <form action="/project-delete/{{$data.Id}}" method="post">
+                  <input
+                    class="col-sm-12 pt-1 pb-1 btn-delete"
                     type="submit"
                     value="Delete Post"
                     style="
@@ -236,156 +241,6 @@
           </div>
         </div>
         {{end}}
-
-        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-          <div class="card card-my-project">
-            <div class="card-body rounded-3 shadow">
-              <img
-                class="card-img-top rounded-3"
-                src="/public/image/kucing-selfi.jpg"
-                alt="test"
-              />
-              <a href="detail-project-page/2" class="fw-bolder fs-5">Tester2</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
-              <div class="d-flex gap-3 mb-3">
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
-                <i class="fa-brands fa-java"></i>
-              </div>
-
-              <div
-                class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
-              >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-56col-sm-12 col-xs-12">
-          <div class="card card-my-project">
-            <div class="card-body rounded-3 shadow">
-              <img
-                class="card-img-top rounded-3"
-                src="/public/image/kuda-selfi.jpg"
-                alt="test"
-              />
-              <a href="detail-project-page/3" class="fw-bolder fs-5">Tester3</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
-              <div class="d-flex gap-3 mb-3">
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
-                <i class="fa-brands fa-java"></i>
-              </div>
-
-              <div
-                class="btn-group gap-3 d-flex flex-row justify-content-center p-2"
-              >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-          <div class="card card-my-project">
-            <div class="card-body rounded-3 shadow">
-              <img
-                class="card-img-top rounded-3"
-                src="/public/image/monyet-selfi.jpg"
-                alt="test"
-              />
-              <a href="detail-project-page/4" class="fw-bolder fs-5">Tester5</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
-              <div class="d-flex gap-3 mb-3">
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
-                <i class="fa-brands fa-java"></i>
-              </div>
-
-              <div
-                class="btn-group row gap-3 d-flex justify-content-center p-2"
-              >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12">
-          <div class="card card-my-project">
-            <div class="card-body rounded-3 shadow">
-              <img
-                class="card-img-top rounded-3"
-                src="/public/image/anjing-selfie.jpeg"
-                alt="test"
-              />
-              <a href="detail-project-page/5" class="fw-bolder fs-5">Tester5</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
-              <div class="d-flex gap-3 mb-3">
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
-                <i class="fa-brands fa-java"></i>
-              </div>
-
-              <div
-                class="btn-group row gap-3 d-flex justify-content-center p-2"
-              >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-          <div class="card card-my-project">
-            <div class="card-body rounded-3 shadow">
-              <img
-                class="card-img-top rounded-3"
-                src="/public/image/hehe-selfie.jpg"
-                alt="test"
-              />
-              <a href="detail-project-page/6" class="fw-bolder fs-5">Tester6</a>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia, omnis!
-              </p>
-              <div class="d-flex gap-3 mb-3">
-                <i class="fa-brands fa-js"></i>
-                <i class="fa-brands fa-python"></i>
-                <i class="fa-brands fa-php"></i>
-                <i class="fa-brands fa-java"></i>
-              </div>
-
-              <div
-                class="btn-group row gap-3 d-flex justify-content-center p-2"
-              >
-                <button class="col pt-1 pb-1 btn-edit">Edit</button>
-                <button class="col pt-1 pb-1 btn-delete">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 

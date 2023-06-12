@@ -112,6 +112,15 @@
   font-weight: bold;
 }
 
+.my-project-container .card .card-body .btn-update {
+  border: none;
+  background-color: rgb(65, 63, 63);
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .my-project-container .card .card-body .btn-delete {
   border: none;
   background-color: rgb(65, 63, 63);

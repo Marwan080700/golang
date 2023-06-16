@@ -59,6 +59,33 @@
               >
             </li>
           </ul>
+          {{if .DataSession.IsLogin}}
+          <a href="/" style="text-decoration: none" class="text-light fs-6 me-3"
+            >Welcome, {{.DataSession.Name}}</a
+          >
+          <form id="myform" action="/signout" method="post"></form>
+          <button
+            onclick="document.getElementById('myform').submit()"
+            class="btn-auth me-4 fs-5"
+            style="border: none; background-color: #495551; color: white"
+          >
+            Sign Out
+          </button>
+          {{else}}
+          <a
+            class="btn-auth fs-5 me-4"
+            style="text-decoration: none; color: white"
+            href="/form-login"
+            >Sign In</a
+          >
+
+          <a
+            class="btn-auth fs-5 me-4"
+            style="text-decoration: none; color: white"
+            href="/form-signup"
+            >Sign Up</a
+          >
+          {{end}}
           <a class="btn fs-5 fw-medium text-dark" href="/form-contact"
             >Contact Me</a
           >
@@ -71,14 +98,18 @@
       <h2 class="text-center pt-5 pb-5">Detail Project</h2>
       <div class="d-flex justify-content-center align-items-center">
         <img
-          src="/public/image/kucing-selfi.jpg"
+          src="/uploads/{{.Project.File}}"
           alt="kucing selfie"
           class="rounded-3"
         />
       </div>
 
       <div class="duration-section mt-4">
-        <h3>duration</h3>
+        <div class="d-flex justify-content-between ">
+          <h3>duration</h3>
+          <p>Author : {{.Project.Author}}</p>
+        </div>
+
         <div class="detail-calendar d-flex gap-3">
           <i class="fa-solid fa-calendar-days"></i>
           <p>{{.Project.StartDate}} - {{.Project.EndDate}}</p>

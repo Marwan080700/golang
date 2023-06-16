@@ -55,19 +55,71 @@
             </li>
             <li class="nav-item">
               <a
-                class="nav-link fs-5 text-light"
+                class="btn-auth nav-link fs-5 text-light"
                 aria-current="page"
                 href="testimonial-page"
                 >Testimonial</a
               >
             </li>
           </ul>
+          {{if .DataSession.IsLogin}}
+          <a href="/" style="text-decoration: none" class="text-light fs-6 me-3"
+            >Welcome, {{.DataSession.Name}}</a
+          >
+          <form id="myform" action="/signout" method="post"></form>
+          <button
+            onclick="document.getElementById('myform').submit()"
+            class="btn-auth me-4 fs-5"
+            style="border: none; background-color: #495551; color: white"
+          >
+            Sign Out
+          </button>
+          {{else}}
+          <a
+            class="btn-auth fs-5 me-4"
+            style="text-decoration: none; color: white"
+            href="/form-login"
+            >Sign In</a
+          >
+
+          <a
+            class="btn-auth fs-5 me-4"
+            style="text-decoration: none; color: white"
+            href="/form-signup"
+            >Sign Up</a
+          >
+          {{end}}
+
           <a class="btn fs-5 fw-medium text-dark" href="/form-contact"
             >Contact Me</a
           >
         </div>
       </div>
     </nav>
+
+    <!-- alert success or not while login -->
+
+    {{if.FlashMessage}} {{if.FlashStatus}}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+      <strong>{{.FlashMessage}}</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {{else}}
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+      <strong>{{.FlashMessage}}</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {{end}}{{end}}
 
     <!-- content section -->
     <div class="container-card d-flex">
@@ -159,6 +211,7 @@
     <div class="my-project-container">
       <h2 class="text-center fw-bold pt-5">My Project</h2>
 
+      {{if .DataSession.IsLogin}}
       <div class="add-button text-end" style="margin-right: 13.5%">
         <a
           class="btn fw-bolder"
@@ -172,6 +225,7 @@
           >Add Project</a
         >
       </div>
+      {{end}}
 
       <div
         class="row card-content gap-4 p-5 d-flex align-items-center justify-content-center"
@@ -181,15 +235,22 @@
           <div class="card card-my-project">
             <div class="card-body rounded-3 shadow">
               <img
-                class="card-img-top rounded-3"
-                src="/public/image/kucing-selfi.jpg"
+                class="card-img-top"
+                src="/uploads/{{$data.File}}"
                 alt="test"
               />
-              <a href="/detail-project-page/{{$data.Id}}" class="fw-bolder fs-5"
-                >{{$data.Title}}</a
-              >
-              <p>Duration : {{$data.Duration}}</p>
-              <p>{{$data.Desc}}</p>
+              <div class="d-flex justify-content-between">
+                <a
+                  href="/detail-project-page/{{$data.Id}}"
+                  class="fw-bolder fs-4"
+                  >{{$data.Title}}</a
+                >
+                <p class="fw-lighter fst-italic">Author : {{$data.Author}}</p>
+              </div>
+
+              <p class="fst-italic">Duration : {{$data.Duration}}</p>
+
+              <p class="fw-medium fs-5">{{$data.Desc}}</p>
               <div class="d-flex gap-3 mb-3">
                 <!-- check js -->
                 {{if $data.CheckJs}}
@@ -218,19 +279,20 @@
                     type="submit"
                     value="Edit Post"
                     style="
-                      width: 170px;
+                      width: 100px;
                       padding-left: 10px;
                       padding-right: 10px;
                     "
                   />
                 </form>
+
                 <form action="/project-delete/{{$data.Id}}" method="post">
                   <input
                     class="col-sm-12 pt-1 pb-1 btn-delete"
                     type="submit"
                     value="Delete Post"
                     style="
-                      width: 170px;
+                      width: 100px;
                       padding-left: 10px;
                       padding-right: 10px;
                     "
